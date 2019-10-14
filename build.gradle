@@ -1,0 +1,28 @@
+group 'com.cloudera.zy'
+version 1.0
+
+apply plugin: 'idea'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'scala'
+    
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    repositories {
+        mavenLocal()  // 读取 maven 本地库,如果依赖jar已存在就不再下载
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }  // 设定下载的maven源的url
+        mavenCentral()
+        maven { url 'https://repository.cloudera.com/artifactory/cloudera-repos/' }
+    }
+
+    dependencies {
+        compile group: 'org.scala-lang', name: 'scala-library', version: '2.11.8'
+    }
+}
+

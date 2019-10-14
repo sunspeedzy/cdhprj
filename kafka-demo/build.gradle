@@ -1,0 +1,5 @@
+group 'com.cloudera.zy'
+
+dependencies {
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '1.0.1-kafka-3.1.1'
+}
