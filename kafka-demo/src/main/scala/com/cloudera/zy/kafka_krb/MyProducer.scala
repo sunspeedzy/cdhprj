@@ -35,6 +35,8 @@ object MyProducer {
       producer.send(record)
       System.out.println(key + "----" + value)
 
+      Thread.sleep(500)
+
       if (i % 10 ==0)
         producer.flush()
     }
