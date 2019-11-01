@@ -8,9 +8,9 @@ import org.apache.kafka.common.TopicPartition
 
 /**
   * 从启用了Kerberos的Kafka中消费数据
-  * 使用低级API
+  * 由Consumer手动提交Offset
   */
-object MyConsumer {
+object MyConsumerManual {
   def main(args: Array[String]): Unit = {
     // 例如 node-01:9092
     val bootStrapServers = args(0)
@@ -27,7 +27,7 @@ object MyConsumer {
 
     val props = new Properties
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootStrapServers)
-    props.put(ConsumerConfig.GROUP_ID_CONFIG, "DemoConsumerGrp")
+    props.put(ConsumerConfig.GROUP_ID_CONFIG, "DemoConsumerGrp-CommitManual")
     props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
       "org.apache.kafka.common.serialization.StringDeserializer")
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
